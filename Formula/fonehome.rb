@@ -7,8 +7,6 @@ class Fonehome < Formula
   def install
     build_script = <<~EOS
 
-      echo "foobar"
-
       SCRIPTFILE="#{bin}/fonehome"
       CONFDIR="#{HOMEBREW_PREFIX}/etc/fonehome"
       LAUNCHFILE="#{plist_path}"
