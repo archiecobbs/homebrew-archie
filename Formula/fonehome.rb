@@ -60,6 +60,8 @@ class Fonehome < Formula
 
     plist_path.write fonehome_startup_plist
     plist_path.chmod 0644
+
+    ohai "See fonehome(1) man page for setup and initialization instructions."
   end
 
   test do
@@ -85,6 +87,6 @@ class Fonehome < Formula
       <string>#{var}</string>
     </dict>
     </plist>
-    EOS
+  EOS
   end
 end
