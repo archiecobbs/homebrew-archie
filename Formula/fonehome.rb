@@ -1,8 +1,8 @@
 class Fonehome < Formula
   desc "Remote access to machines behind firewalls"
   homepage "https://github.com/archiecobbs/fonehome"
-  url "https://s3.amazonaws.com/archie-public/fonehome/fonehome-1.1.0.tar.gz"
-  sha256 "0efc7b3f1755c1ef0e373555010b0cfc8d56d49b1feb76d05e3f2fa7665b35b2"
+  url "https://s3.amazonaws.com/archie-public/fonehome/fonehome-1.2.1.tar.gz"
+  sha256 "8df8f43b2b9f0ab62eb188cf7cbb0b4fc93ac436af24217cdaa7858d82556674"
 
   def install
     build_script = <<~EOS
