@@ -9,7 +9,7 @@ class Fonehome < Formula
 
       SCRIPTFILE="#{bin}/fonehome"
       CONFDIR="#{HOMEBREW_PREFIX}/etc/fonehome"
-      LAUNCHFILE="#{plist_path}"
+      LAUNCHFILE="#{launchd_service_path}"
       CONFFILE="${CONFDIR}/fonehome.conf"
       KEYFILE="${CONFDIR}/fonehome.key"
       HOSTSFILE="${CONFDIR}/fonehome.hosts"
@@ -58,8 +58,8 @@ class Fonehome < Formula
 
     Open3.capture2("bash", :stdin_data=>build_script, :binmode=>true)
 
-    plist_path.write fonehome_startup_plist
-    plist_path.chmod 0644
+    launchd_service_path.write fonehome_startup_plist
+    launchd_service_path.chmod 0644
 
     ohai "See fonehome(1) man page for setup and initialization instructions."
   end
