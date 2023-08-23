@@ -33,29 +33,29 @@ class Fonehome < Formula
 
       # man pages
       install -d "#{man1}"
-      install fonehome.1 "#{man1}/"
+      install -m 644 fonehome.1 "#{man1}/"
 
       # docs
       install -d "#{doc}"
-      install CHANGES README COPYING fonehome.conf.sample "#{doc}/"
+      install -m 644 CHANGES README COPYING fonehome.conf.sample "#{doc}/"
 
       # script files
       install -d "#{bin}"
-      install fonehome "#{bin}/"
+      install -m 755 fonehome "#{bin}/"
 
       # config files
       install -d "${CONFDIR}"
       if [ ! -e "${CONFFILE}" ]; then
-          install fonehome.conf.sample "${CONFFILE}"
+          install -m 644 fonehome.conf.sample "${CONFFILE}"
       fi
 
       # placeholder host and key files
-      for FILE in "${HOSTSFILE}" "${KEYFILE}"; do
-          if [ ! -e "${FILE}" ]; then
-              install /dev/null "${FILE}"
-          fi
-      done
-      chmod 600 "${KEYFILE}"
+      if [ ! -e "${HOSTSFILE}" ]; then
+          install -m 644 /dev/null "${HOSTSFILE}"
+      fi
+      if [ ! -e "${KEYFILE}" ]; then
+          install -m 600 /dev/null "${KEYFILE}"
+      fi
 
     EOS
 
