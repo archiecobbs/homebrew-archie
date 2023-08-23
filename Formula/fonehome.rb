@@ -58,35 +58,33 @@ class Fonehome < Formula
 
     Open3.capture2("bash", :stdin_data=>build_script, :binmode=>true)
 
-    launchd_service_path.write fonehome_startup_plist
-    launchd_service_path.chmod 0644
+  end
 
-    ohai "See fonehome(1) man page for setup and initialization instructions."
+  def caveats
+    <<~EOS
+      To configure fonehome, read and edit this file:
+        #{etc}/fonehome/fonehome.conf
+
+      You will also need to install your secret key(s).
+
+      After defining your server(s), confirm their public keys via:
+        fonehome -I
+
+      After changing the configuration, restart fonehome via:
+        brew services restart fonehome
+
+      See the fonehome(1) man page for futher details:
+        man fonehome
+    EOS
+  end
+
+  service do
+    run [opt_bin/"fonehome"]
+    keep_alive true
+    working_dir var
   end
 
   test do
     system "#{bin}/fonehome", "--help"
-  end
-
-  def fonehome_startup_plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>KeepAlive</key>
-      <true/>
-      <key>Label</key>
-      <string>#{plist_name}</string>
-      <key>ProgramArguments</key>
-      <array>
-        <string>#{bin}/fonehome</string>
-      </array>
-      <key>RunAtLoad</key>
-      <true/>
-      <key>WorkingDirectory</key>
-      <string>#{var}</string>
-    </dict>
-    </plist>
-  EOS
   end
 end
