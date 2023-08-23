@@ -47,11 +47,16 @@ class Fonehome < Formula
 
       # config files
       install -d "${CONFDIR}"
-      install fonehome.conf.sample "${CONFFILE}"
+      if [ ! -e "${CONFFILE}" ]; then
+          install fonehome.conf.sample "${CONFFILE}"
+      fi
 
-      # Create empty host and key files
-      install /dev/null "${HOSTSFILE}"
-      install /dev/null "${KEYFILE}"
+      # placeholder host and key files
+      for FILE in "${HOSTSFILE}" "${KEYFILE}"; do
+          if [ ! -e "${FILE}" ]; then
+              install /dev/null "${FILE}"
+          fi
+      done
       chmod 600 "${KEYFILE}"
 
     EOS
