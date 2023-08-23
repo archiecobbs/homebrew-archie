@@ -9,7 +9,6 @@ class Fonehome < Formula
 
       SCRIPTFILE="#{bin}/fonehome"
       CONFDIR="#{HOMEBREW_PREFIX}/etc/fonehome"
-      LAUNCHFILE="#{launchd_service_path}"
       CONFFILE="${CONFDIR}/fonehome.conf"
       KEYFILE="${CONFDIR}/fonehome.key"
       HOSTSFILE="${CONFDIR}/fonehome.hosts"
@@ -22,7 +21,6 @@ class Fonehome < Formula
           sed \
             -e "s|@fonehomeconf@|${CONFFILE}|g" \
             -e "s|@fonehomehosts@|${HOSTSFILE}|g" \
-            -e "s|@fonehomeinit@|${LAUNCHFILE}|g" \
             -e "s|@fonehomekey@|${KEYFILE}|g" \
             -e "s|@fonehomelogfac@|${SYSLOGFAC}|g" \
             -e "s|@fonehomename@|fonehome|g" \
