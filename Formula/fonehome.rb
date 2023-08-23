@@ -28,7 +28,7 @@ class Fonehome < Formula
             -e "s|@fonehomeuser@|${USERNAME}|g"
       }
       subst < src/conf/fonehome.conf.sample > fonehome.conf.sample
-      subst < src/scripts/fonehome.sh > fonehome
+      subst < src/scripts/fonehome.sh | sed 's/xargs -r/xargs/g' > fonehome
       subst < src/man/fonehome.1 > fonehome.1
 
       # man pages
